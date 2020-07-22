@@ -1,13 +1,36 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/*Add some CSS to each of the components to make them look nicer.*/
+
+/* Title */
+h1 {
+    text-align: center;
+    font-size: 50px;
+    color: #3498db;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Table itself */
+table {
+    width: 750px;
+    margin: 50px 25%;
+    border-collapse: collapse;
 }
+
+/* Zebra striping for table rows */
+tr:nth-of-type(odd) {
+    background: #eee;
+}
+
+/* Head of table */
+th {
+    background: #3498db;
+    color: white;
+    font-weight: bold;
+}
+
+/* Data inside the table */
+td, th {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+    font-size: 18px;
+}
+

@@ -1,7 +1,7 @@
 /*Add some CSS to each of the components to make them look nicer.*/
 
 /* Title */
-h1 {
+h3 {
     text-align: center;
     font-size: 50px;
     color: #3498db;
@@ -9,8 +9,6 @@ h1 {
 
 /* Table itself */
 table {
-    width: 750px;
-    margin: 50px 25%;
     border-collapse: collapse;
     text-align: center;
 }

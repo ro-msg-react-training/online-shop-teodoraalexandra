@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import './index.css';
+import 'fontsource-roboto';
+import { Button } from "@material-ui/core";
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
 
 // TASK: Migrate your React component(s) from before from using class-based components
 // to using hooks inside functional components.
@@ -10,22 +14,22 @@ function ProductDetail(props) {
     const product = props.product;
 
     return (
-        <tr>
-            <td className="category">{product.category}</td>
-            <td className="name">{product.name}</td>
-            <td className="price">{product.price}</td>
-            <td className="quantity">{quantity}</td>
-            <td className="update">
-                <button onClick={() =>
+        <TableRow>
+            <TableCell className="category">{product.category}</TableCell>
+            <TableCell className="name">{product.name}</TableCell>
+            <TableCell className="price">{product.price}</TableCell>
+            <TableCell className="quantity">{quantity}</TableCell>
+            <TableCell className="update">
+                <Button color="primary" onClick={() =>
                     setQuantity(quantity - 1)}> -
-                </button>
-            </td>
-            <td className="update">
-                <button onClick={() =>
+                </Button>
+            </TableCell>
+            <TableCell className="update">
+                <Button color="primary" onClick={() =>
                     setQuantity(quantity + 1)}> +
-                </button>
-            </td>
-        </tr>
+                </Button>
+            </TableCell>
+        </TableRow>
     );
 }
 

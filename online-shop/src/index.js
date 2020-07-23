@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ProductList from './ProductList';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { Typography } from "@material-ui/core";
+import theme from "./theme";
 import './index.css';
+import 'fontsource-roboto';
 
 // First of all, we have to have some hardcoded products
 // Here, the products will have a name, a category and a price
@@ -19,9 +23,9 @@ const products = [
 ];
 
 ReactDOM.render(
-    <div className="container">
-        <h1>Products</h1>
+    <ThemeProvider theme={theme}>
+        <Typography color="primary" variant="h3">Products</Typography><br/>
         <ProductList products = {products} />
-    </div>,
+    </ThemeProvider>,
     document.getElementById('root')
 );

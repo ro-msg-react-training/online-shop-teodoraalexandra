@@ -1,7 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './index.css';
 
-class ProductDetail extends React.Component {
+// TASK: Migrate your React component(s) from before from using class-based components
+// to using hooks inside functional components.
+
+function ProductDetail(props) {
+    // Declare a new state variable, which we'll call "quantity"
+    const [quantity, setQuantity] = useState(1);
+    const product = props.product;
+
+    return (
+        <tr>
+            <td className="category">{product.category}</td>
+            <td className="name">{product.name}</td>
+            <td className="price">{product.price}</td>
+            <td className="quantity">{quantity}</td>
+            <td className="update">
+                <button onClick={() =>
+                    setQuantity(quantity - 1)}> -
+                </button>
+            </td>
+            <td className="update">
+                <button onClick={() =>
+                    setQuantity(quantity + 1)}> +
+                </button>
+            </td>
+        </tr>
+    );
+}
+
+/*class ProductDetail extends React.Component {
     constructor(props) {
         super(props);
         // Create a quantity state which we should be able to modify using + and - buttons
@@ -35,6 +63,6 @@ class ProductDetail extends React.Component {
             </tr>
         );
     }
-}
+}*/
 
 export default ProductDetail

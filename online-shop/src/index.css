@@ -12,6 +12,7 @@ table {
     width: 750px;
     margin: 50px 25%;
     border-collapse: collapse;
+    text-align: center;
 }
 
 /* Zebra striping for table rows */
@@ -32,5 +33,9 @@ td, th {
     border: 1px solid #ccc;
     text-align: left;
     font-size: 18px;
+}
+
+.update, th {
+    text-align: center;
 }
 

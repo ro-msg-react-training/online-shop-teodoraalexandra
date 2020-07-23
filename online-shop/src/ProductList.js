@@ -16,6 +16,8 @@ class ProductList extends React.Component {
                     <th>Category</th>
                     <th>Product name</th>
                     <th>Price</th>
+                    <th>Quantity</th>
+                    <th colSpan="2">Update quantity</th>
                 </tr>
                 </thead>
                 <tbody>

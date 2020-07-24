@@ -5,9 +5,9 @@ import Product from './Product';
 import Cart from './Cart';
 
 // The Main component renders one of the three provided
-// Routes (provided that one matches). Both the /roster
-// and /schedule routes will match any pathname that starts
-// with /roster or /schedule. The / route will only match
+// Routes (provided that one matches). Both the /products
+// and /cart routes will match any pathname that starts
+// with /products or /cart. The / route will only match
 // when the pathname is exactly the string "/"
 const Main = () => (
     <main>

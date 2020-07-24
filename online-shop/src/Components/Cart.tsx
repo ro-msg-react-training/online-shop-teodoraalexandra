@@ -11,6 +11,7 @@ import TableRow from '@material-ui/core/TableRow';
 import '../Styles/index.css';
 import 'fontsource-roboto';
 import ProductsInCart from "../API/CartProducts";
+import {Typography} from "@material-ui/core";
 
 const useStyles = makeStyles({
     table: {
@@ -18,6 +19,8 @@ const useStyles = makeStyles({
     },
 });
 
+// The difference between Cart and ProductList is in map function
+// In cart we will have to get the ProductsInCart, not ProductsAPI where we have all products
 function Cart(prop) {
     const classes = useStyles();
 
@@ -27,6 +30,7 @@ function Cart(prop) {
 
     return (
         <TableContainer component={Paper}>
+            <Typography variant="h2">Cart</Typography>
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                     <TableRow>
@@ -40,37 +44,10 @@ function Cart(prop) {
                 </TableHead>
                 <TableBody>
                     {productDetail}
-
                 </TableBody>
             </Table>
         </TableContainer>
     );
 }
-
-/*class ProductList extends React.Component {
-    render() {
-        const products = this.props.products;
-        const productDetail = products.map((product) =>
-            <ProductDetail product={product}/>
-        );
-
-        return (
-            <table>
-                <thead>
-                <tr>
-                    <th>Category</th>
-                    <th>Product name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th colSpan="2">Update quantity</th>
-                </tr>
-                </thead>
-                <tbody>
-                {productDetail}
-                </tbody>
-            </table>
-        );
-    }
-}*/
 
 export default Cart

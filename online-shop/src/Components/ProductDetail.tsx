@@ -30,7 +30,11 @@ function ProductDetail(props) {
                     setQuantity(quantity + 1)}> +
                 </Button>
             </TableCell>
-            <Link to={`/products/${product.number}`}>Details</Link>
+            <TableCell>
+                <Link to={`/products/${product.number}`} className="link">
+                    <Button color="primary">Details</Button>
+                </Link>
+            </TableCell>
         </TableRow>
     );
 }

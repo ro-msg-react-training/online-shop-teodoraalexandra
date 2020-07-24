@@ -1,10 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import ProductList from "./ProductList";
-import ProductDetail from "./ProductDetail";
-import { ThemeProvider } from '@material-ui/core/styles';
-import { Typography, Container } from "@material-ui/core";
-import theme from "../Styles/theme";
+import { Container } from "@material-ui/core";
 import Header from "./Header";
 import Main from "./Main";
 import 'fontsource-roboto';

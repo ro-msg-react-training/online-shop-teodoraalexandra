@@ -1,10 +1,8 @@
 /*Add some CSS to each of the components to make them look nicer.*/
 
 /* Title */
-h3 {
+.title {
     text-align: center;
-    font-size: 50px;
-    color: #3498db;
 }
 
 /* Table itself */
@@ -35,5 +33,14 @@ td, th {
 
 .update, th {
     text-align: center;
+}
+
+.active {
+    color: antiquewhite;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
 }
 

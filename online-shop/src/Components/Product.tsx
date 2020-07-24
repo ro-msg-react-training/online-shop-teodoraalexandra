@@ -3,8 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import ProductList from "./ProductList";
 import ProductPage from "./ProductPage";
 
-// The Product component matches one of two different routes
-// depending on the full pathname
+// The Product component matches one of two different routes depending on the full pathname
 const Product = () => (
     <Switch>
         <Route exact path='/products' component={ProductList}/>

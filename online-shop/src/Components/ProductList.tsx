@@ -8,8 +8,16 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import './index.css';
+import '../Styles/index.css';
 import 'fontsource-roboto';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useRouteMatch,
+    useParams
+} from "react-router-dom";
 
 const useStyles = makeStyles({
     table: {
@@ -21,7 +29,8 @@ function ProductList(prop) {
     const classes = useStyles();
     const products = prop.products;
     const productDetail = products.map((product) =>
-        <ProductDetail product={product}/>
+        /*<ProductDetail product={product}/>*/
+        <Link to={`/products/${product}`}/>
     );
 
     return (
@@ -33,7 +42,7 @@ function ProductList(prop) {
                         <TableCell>Product name</TableCell>
                         <TableCell>Price</TableCell>
                         <TableCell>Quantity</TableCell>
-                        <TableCell colSpan="2">Update quantity</TableCell>
+                        <TableCell colSpan={2}>Update quantity</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

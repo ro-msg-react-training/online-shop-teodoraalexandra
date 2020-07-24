@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './index.css';
+import '../Styles/index.css';
 import 'fontsource-roboto';
 import { Button } from "@material-ui/core";
 import TableCell from '@material-ui/core/TableCell';

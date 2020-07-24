@@ -4,6 +4,7 @@ import 'fontsource-roboto';
 import { Button } from "@material-ui/core";
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+import { Link } from "react-router-dom";
 
 // TASK: Migrate your React component(s) from before from using class-based components
 // to using hooks inside functional components.
@@ -29,6 +30,7 @@ function ProductDetail(props) {
                     setQuantity(quantity + 1)}> +
                 </Button>
             </TableCell>
+            <Link to={`/products/${product.number}`}>Details</Link>
         </TableRow>
     );
 }

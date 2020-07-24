@@ -7,7 +7,6 @@ import { Typography, Container } from "@material-ui/core";
 import theme from "../Styles/theme";
 import Header from "./Header";
 import Main from "./Main";
-import './Styles/index.css';
 import 'fontsource-roboto';
 
 // This component will be rendered by our <Router>

@@ -10,7 +10,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import '../Styles/index.css';
 import 'fontsource-roboto';
-import ProductsAPI from "../API/AllProducts";
+import ProductsInCart from "../API/CartProducts";
 
 const useStyles = makeStyles({
     table: {
@@ -18,11 +18,11 @@ const useStyles = makeStyles({
     },
 });
 
-function ProductList(prop) {
+function Cart(prop) {
     const classes = useStyles();
 
-    const productDetail = ProductsAPI.all().map((product) =>
-            <ProductDetail product = {product}/>
+    const productDetail = ProductsInCart.all().map((product) =>
+        <ProductDetail product = {product}/>
     );
 
     return (
@@ -73,4 +73,4 @@ function ProductList(prop) {
     }
 }*/
 
-export default ProductList
+export default Cart

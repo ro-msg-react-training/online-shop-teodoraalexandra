@@ -1,16 +1,15 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import ProductList from "./ProductList";
-import ProductDetail from "./ProductDetail";
+import ProductPage from "./ProductPage";
 
-// The Roster component matches one of two different routes
+// The Product component matches one of two different routes
 // depending on the full pathname
-const Roster = () => (
+const Product = () => (
     <Switch>
-        <Route exact path='/roster' component={ProductList}/>
-        <Route path='/roster/:number' component={ProductDetail}/>
+        <Route exact path='/products' component={ProductList}/>
+        <Route path='/products/:number' component={ProductPage}/>
     </Switch>
 )
 
-
-export default Roster
+export default Product

@@ -3,68 +3,78 @@ import '../Styles/index.css';
 import 'fontsource-roboto';
 import { Button } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
-import ProductsAPI from "../API/AllProducts";
 import ProductsInCart from "../API/CartProducts";
 import { Link } from 'react-router-dom'
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 
-const useStyles = makeStyles({
-    title: {
-        fontSize: 30,
-    },
-    pos: {
-        marginBottom: 12,
-    },
-});
 
-// TASK: Migrate your React component(s) from before from using class-based components
-// to using hooks inside functional components.
+const url = 'http://localhost:4000/products';
 
-const ProductPage = (props) => {
-    const classes = useStyles();
+class ProductPage extends React.Component<any, any> {
+    constructor(props) {
+        super(props);
 
-    // Get the given product depending on the parameters (the number which is PK)
-    const product = ProductsAPI.get(
-        parseInt(props.match.params.number, 10)
-    )
-
-    // Avoid crashing :)
-    if (!product) {
-        return <div>Sorry, but the product was not found</div>
+        // Create an empty array as the initial state
+        this.state = {
+            product: [],
+        };
     }
 
-    function addToCart(e) {
-        e.preventDefault();
-        ProductsInCart.add(product);
-        alert("Added to cart successfully!");
+    componentDidMount() {
+        fetch(url + "/" + this.props.match.params.id)
+            .then(response => response.json())
+            .then(data => this.setState({ product: data }));
     }
 
-    return (
-        <Card >
-            <CardContent>
-                <Typography className={classes.title} color="primary" gutterBottom>
-                    Product details page
-                </Typography>
+    render() {
+        const { product } = this.state;
 
-                <Typography className={classes.pos}>
-                    <b>Name:</b> {product.name}
-                </Typography>
-                <Typography className={classes.pos} color="primary">
-                    <b>Price:</b> {product.price}
-                </Typography>
-                <Typography className={classes.pos}>
-                    <b>Category:</b> {product.category}
-                </Typography>
-            </CardContent>
-            <CardActions>
-                <Button size="small" onClick={addToCart}>Add to cart</Button>
-                <Link to='/products' className="link"><Button size="small" color="primary">Go back</Button></Link>
-            </CardActions>
-        </Card>
-    )
+        // Avoid crashing :)
+        if (product.length === 0) {
+            return <div>Sorry, but the product was not found</div>
+        }
+
+        function addToCart(e) {
+            e.preventDefault();
+            ProductsInCart.add(product);
+            alert("Added to cart successfully!");
+        }
+
+        function deleteProduct(e) {
+            e.preventDefault();
+            if (window.confirm("Are you sure you want to delete this product?")) {
+                alert("This product has been deleted successfully!");
+            }
+            //TODO: delete from the backend too
+        }
+
+        return (
+            <Card >
+                <CardContent>
+                    <Typography variant="h4" color="primary" >
+                        Product details page
+                    </Typography>
+                    <Typography >
+                        <b>Name:</b> {product.name}
+                    </Typography>
+                    <Typography  color="primary">
+                        <b>Price:</b> {product.price}
+                    </Typography>
+                    <Typography >
+                        <b>Category:</b> {product.category}
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <Button size="small" onClick={addToCart}>Add to cart</Button>
+                    <Link to='/products' className="link"><Button size="small" color="primary">Go back</Button></Link>
+                    <Button size="small" onClick={deleteProduct} >Delete</Button>
+                </CardActions>
+            </Card>
+        );
+    }
 }
+
 export default ProductPage
 

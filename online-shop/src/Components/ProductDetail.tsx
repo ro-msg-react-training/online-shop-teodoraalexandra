@@ -31,7 +31,7 @@ function ProductDetail(props) {
                 </Button>
             </TableCell>
             <TableCell>
-                <Link to={`/products/${product.number}`} className="link">
+                <Link to={`/products/${product.id}`} className="link">
                     <Button color="primary">Details</Button>
                 </Link>
             </TableCell>

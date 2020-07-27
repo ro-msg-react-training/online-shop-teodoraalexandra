@@ -50,4 +50,6 @@ function Cart(prop) {
     );
 }
 
+//TODO: checkout button -> new order on the backend
+
 export default Cart

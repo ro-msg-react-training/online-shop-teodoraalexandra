@@ -7,7 +7,7 @@ import ProductPage from "./ProductPage";
 const Product = () => (
     <Switch>
         <Route exact path='/products' component={ProductList}/>
-        <Route path='/products/:number' component={ProductPage}/>
+        <Route path='/products/:id' component={ProductPage}/>
     </Switch>
 )
 

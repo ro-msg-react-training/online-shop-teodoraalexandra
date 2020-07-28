@@ -43,3 +43,11 @@ td, th {
     text-decoration: none;
     color: white;
 }
+
+.right {
+    float: right;
+}
+
+.inline {
+    display: inline;
+}

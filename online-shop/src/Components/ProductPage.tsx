@@ -45,9 +45,19 @@ class ProductPage extends React.Component<any, any> {
         function deleteProduct(e) {
             e.preventDefault();
             if (window.confirm("Are you sure you want to delete this product?")) {
+                // Delete from backend
+                fetch(url + "/" + product.id, {
+                    method: 'DELETE',
+                })
+                    .then(res => res.text())
+                    .then(res => console.log(res))
+
+                // Send a success message
                 alert("This product has been deleted successfully!");
+
+                // Redirect user to products main page
+                window.location.href = "../products";
             }
-            //TODO: delete from the backend too
         }
 
         return (

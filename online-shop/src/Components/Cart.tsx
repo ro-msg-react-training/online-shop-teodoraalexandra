@@ -11,7 +11,10 @@ import TableRow from '@material-ui/core/TableRow';
 import '../Styles/index.css';
 import 'fontsource-roboto';
 import ProductsInCart from "../API/CartProducts";
-import {Typography} from "@material-ui/core";
+import {Button, Typography} from "@material-ui/core";
+
+
+const url = 'http://localhost:4000/orders';
 
 const useStyles = makeStyles({
     table: {
@@ -28,9 +31,48 @@ function Cart(prop) {
         <ProductDetail product = {product}/>
     );
 
+    function checkout(e) {
+        e.preventDefault();
+        const request = {
+            "customer": "doej",
+            "products": ProductsInCart.id()
+        }
+
+        // Create a new order on the backend
+        // POST request using fetch with error handling
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(request)
+        };
+
+        fetch(url, requestOptions)
+            .then(async response => {
+                const data = await response.json();
+
+                // check for error response
+                if (!response.ok) {
+                    // get error message from body or default to response status
+                    const error = (data && data.message) || response.status;
+                    console.log("Everything is fine.");
+                    return Promise.reject(error);
+                }
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
+
+        // Send a success message
+        alert("Your order has been placed successfully!");
+
+        // Redirect user to products main page
+        window.location.href = "../products";
+    }
+
     return (
         <TableContainer component={Paper}>
-            <Typography variant="h2">Cart</Typography>
+            <Typography variant="h2" className="inline">Cart</Typography>
+            <Button size="large" className="right" onClick={checkout}>Checkout</Button>
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                     <TableRow>
@@ -49,7 +91,5 @@ function Cart(prop) {
         </TableContainer>
     );
 }
-
-//TODO: checkout button -> new order on the backend
 
 export default Cart

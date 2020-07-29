@@ -1,6 +1,5 @@
 import React from 'react';
-import ProductDetail from './ProductDetail';
-import { makeStyles } from '@material-ui/core/styles';
+import ProductDetails from './ProductDetails';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -12,68 +11,69 @@ import '../Styles/index.css';
 import 'fontsource-roboto';
 import ProductsInCart from "../API/CartProducts";
 import {Button, Typography} from "@material-ui/core";
+import urlOrders from "../API/OrdersUrl";
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
+import log from 'loglevel';
 
 
-const url = 'http://localhost:4000/orders';
-
-const useStyles = makeStyles({
-    table: {
-        minWidth: 650,
-    },
-});
+const Alert = (props: AlertProps) => {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 // The difference between Cart and ProductList is in map function
 // In cart we will have to get the ProductsInCart, not ProductsAPI where we have all products
-function Cart(prop) {
-    const classes = useStyles();
+const Cart = (prop) => {
+    const [open, setOpen] = React.useState(false);
 
-    const productDetail = ProductsInCart.all().map((product) =>
-        <ProductDetail product = {product}/>
-    );
+    const handleClick = () => {
+        setOpen(true);
+    };
 
-    function checkout(e) {
-        e.preventDefault();
-        const request = {
-            "customer": "doej",
-            "products": ProductsInCart.id()
+    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
         }
 
-        // Create a new order on the backend
-        // POST request using fetch with error handling
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(request)
-        };
+        setOpen(false);
+    };
 
-        fetch(url, requestOptions)
-            .then(async response => {
-                const data = await response.json();
+    const productDetails = ProductsInCart.all().map((product) =>
+        <ProductDetails product = {product}/>
+    );
 
-                // check for error response
-                if (!response.ok) {
-                    // get error message from body or default to response status
-                    const error = (data && data.message) || response.status;
-                    console.log("Everything is fine.");
-                    return Promise.reject(error);
-                }
+    const request = {
+        'customer': "doej",
+        products: ProductsInCart.id()
+    }
+
+    // Create a new order on the backend
+    // POST request using fetch with error handling
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(request)
+    };
+
+    const checkout = () => {
+        fetch(urlOrders, requestOptions)
+            .then(response => response.status)
+            .then(data => {
+                log.info("Success: ", data);
             })
-            .catch(error => {
-                console.error('There was an error!', error);
+            .catch((error) => {
+                log.error("Error: ", error);
             });
 
         // Send a success message
-        alert("Your order has been placed successfully!");
-
-        // Redirect user to products main page
-        window.location.href = "../products";
+        handleClick();
     }
 
     return (
         <TableContainer component={Paper}>
             <Typography variant="h2" className="inline">Cart</Typography>
             <Button size="large" className="right" onClick={checkout}>Checkout</Button>
-            <Table className={classes.table} aria-label="simple table">
+            <Table className="productsTable" aria-label="simple table">
                 <TableHead>
                     <TableRow>
                         <TableCell>Category</TableCell>
@@ -85,9 +85,16 @@ function Cart(prop) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {productDetail}
+                    {productDetails}
                 </TableBody>
             </Table>
+
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="success">
+                    Your order has been placed successfully!
+                </Alert>
+            </Snackbar>
+
         </TableContainer>
     );
 }

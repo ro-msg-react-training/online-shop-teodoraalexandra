@@ -5,7 +5,7 @@ import Main from "./Main";
 import 'fontsource-roboto';
 
 // This component will be rendered by our <Router>
-function App() {
+const App = () => {
     return (
         <Container>
             <Header />

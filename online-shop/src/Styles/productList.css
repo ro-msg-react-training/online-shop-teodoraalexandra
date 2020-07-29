@@ -1,0 +1,30 @@
+.productsTable {
+    border-collapse: collapse;
+    text-align: center;
+    min-width: 650px;
+}
+
+/* Zebra striping for table rows */
+.productsTable tr:nth-of-type(odd) {
+    background: #eee;
+}
+
+.productsTable th {
+    background: #3498db;
+    color: white;
+    font-weight: bold;
+}
+
+.productsTable td, th {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+    font-size: 18px;
+}
+
+.productsTable th {
+    text-align: center;
+}
+
+
+

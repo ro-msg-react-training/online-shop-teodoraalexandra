@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductDetail from './ProductDetail';
+import ProductDetails from './ProductDetails';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,11 +10,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import '../Styles/index.css';
 import 'fontsource-roboto';
+import productsUrl from "../API/ProductsUrl";
 
 
-const url = 'http://localhost:4000/products';
-
-//TODO: find a solution for these <any>s
 class ProductList extends React.Component<{}, any> {
     constructor(props) {
         super(props);
@@ -26,7 +24,7 @@ class ProductList extends React.Component<{}, any> {
     }
 
     componentDidMount() {
-        fetch(url)
+        fetch(productsUrl)
             .then(response => response.json())
             .then(data => this.setState({ products: data }));
     }
@@ -35,14 +33,14 @@ class ProductList extends React.Component<{}, any> {
         const { products } = this.state;
 
         // Using the map function, we will get all the products from the array
-        const productDetail = products.map((product) =>
-           <ProductDetail product = {product}/>
+        const productDetails = products.map((product) =>
+           <ProductDetails product = {product}/>
         );
 
         return (
             <TableContainer component={Paper}>
                 <Typography variant="h2">Products</Typography>
-                <Table aria-label="simple table">
+                <Table aria-label="simple table" className="productsTable">
                     <TableHead>
                         <TableRow>
                             <TableCell>Category</TableCell>
@@ -54,7 +52,7 @@ class ProductList extends React.Component<{}, any> {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {productDetail}
+                        {productDetails}
                     </TableBody>
                 </Table>
             </TableContainer>

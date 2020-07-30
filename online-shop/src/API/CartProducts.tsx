@@ -1,7 +1,10 @@
 // Initially, the cart is empty
 
 const ProductsInCart = {
-    products: [],
+    products: [
+        { id: 1, name: 'Whey Protein', category: 'Protein', price: '100 RON' },
+        { id: 2, name: 'Chocolate Protein', category: 'Protein', price: '120 RON' }
+    ],
     all: function() { return this.products},
     // We will use this function from the Product Detail Page
     add: function(product) {
@@ -9,7 +12,7 @@ const ProductsInCart = {
     },
     // Get only the ids and quantity for making an order
     id: function () { return this.products.map(function(product) {
-        return {"productId": product.id, "quantity": 1};});}
+        return {"productId": product.id, "quantity": product.quantity };});},
 }
 
 export default ProductsInCart

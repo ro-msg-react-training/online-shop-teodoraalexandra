@@ -111,6 +111,7 @@ class ProductPage extends React.Component<any, any> {
                     <Button size="small" onClick={addToCart}>Add to cart</Button>
                     <Link to='/products' className="link"><Button size="small" color="primary">Go back</Button></Link>
                     <Button size="small" onClick={deleteProduct} >Delete</Button>
+                    <Link to={'/updateProduct/' + product.id}  className="link"><Button size="small" color="primary">Edit product</Button></Link>
                 </CardActions>
 
                 <Snackbar open={openAdd} autoHideDuration={6000} onClose={handleAddClose}>

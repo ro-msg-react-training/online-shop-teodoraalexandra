@@ -1,10 +1,16 @@
 import {FETCH_PRODUCTS } from "../Actions/Types";
 
-const initialState = {
+export interface FetchProductsState {
+    isLoading: boolean,
+    allProducts: [],
+}
+
+const initialState: FetchProductsState = {
+    isLoading: true,
     allProducts: []
 }
 
-export default function (state = initialState, action) {
+export const FetchProductsReducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_PRODUCTS:
             return {

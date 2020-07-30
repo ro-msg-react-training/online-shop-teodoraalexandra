@@ -1,10 +1,16 @@
 import { NEW_PRODUCT } from "../Actions/Types";
 
-const initialState = {
-    addedProduct: {}
+export interface AddProductState {
+    isLoading: boolean,
+    addedProduct: [],
 }
 
-export default function (state = initialState, action) {
+const initialState: AddProductState = {
+    isLoading: true,
+    addedProduct: []
+}
+
+export const AddProductReducer = (state = initialState, action) => {
     switch (action.type) {
         case NEW_PRODUCT:
             return {

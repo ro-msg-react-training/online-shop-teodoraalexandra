@@ -1,10 +1,16 @@
 import { INCREMENT, DECREMENT } from "../Actions/Types";
 
-const initialState = {
-    quantity: []
-};
+export interface QuantityState {
+    isLoading: boolean,
+    quantity: number[],
+}
 
-export default function quantityReducer (state = initialState, action) {
+const initialState: QuantityState = {
+    isLoading: true,
+    quantity: []
+}
+
+export const QuantityReducer = (state = initialState, action) => {
     const copy = state.quantity;
 
     switch(action.type) {

@@ -6,7 +6,9 @@ import TableRow from '@material-ui/core/TableRow';
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { incrementQuantity, decrementQuantity } from "../Actions/QuantityActions";
-import store from "../store";
+import { store } from "../store";
+import { AppState } from "../store";
+
 
 class ProductDetailsCart extends React.Component<any, any> {
     constructor(props) {
@@ -59,7 +61,8 @@ class ProductDetailsCart extends React.Component<any, any> {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: AppState) => ({
     quantity: state.quantity.quantity,
+    isLoading: state.quantity.isLoading
 });
 export default connect(mapStateToProps, { incrementQuantity, decrementQuantity })(ProductDetailsCart);

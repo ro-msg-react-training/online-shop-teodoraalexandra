@@ -9,6 +9,8 @@ import {Button} from "@material-ui/core";
 import { Link } from 'react-router-dom'
 import productsUrl from "../API/ProductsUrl";
 import TextField from '@material-ui/core/TextField';
+import { AppState } from "../store";
+
 
 const Alert = (props: AlertProps) => {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -105,4 +107,8 @@ class UpdateProduct extends React.Component<any, any> {
     }
 }
 
-export default connect(null, { updateProduct })(UpdateProduct)
+const mapStateToProps = (state: AppState) => ({
+    updatedProduct: state.updatedProduct.updatedProduct,
+    isLoading: state.updatedProduct.isLoading
+});
+export default connect(mapStateToProps, { updateProduct })(UpdateProduct)

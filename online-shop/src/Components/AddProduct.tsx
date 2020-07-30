@@ -8,6 +8,8 @@ import Typography from "@material-ui/core/Typography";
 import {Button} from "@material-ui/core";
 import { Link } from 'react-router-dom'
 import TextField from '@material-ui/core/TextField';
+import { AppState } from "../store";
+
 
 const Alert = (props: AlertProps) => {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -96,4 +98,8 @@ class AddProduct extends React.Component<any, any> {
     }
 }
 
-export default connect(null, { createProduct })(AddProduct)
+const mapStateToProps = (state: AppState) => ({
+    newProduct: state.addedProduct.addedProduct,
+    isLoading: state.addedProduct.isLoading
+});
+export default connect(mapStateToProps, { createProduct })(AddProduct)

@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
-import fetchProductReducer from './FetchProductsReducer';
-import addProductReducer from "./AddProductReducer";
-import updateProductReducer from "./UpdateProductReducer";
-import quantityReducer from "./QuantityReducer";
+import { FetchProductsReducer } from './FetchProductsReducer';
+import { AddProductReducer } from "./AddProductReducer";
+import { UpdateProductReducer } from "./UpdateProductReducer";
+import { QuantityReducer } from "./QuantityReducer";
 
 export default combineReducers({
-    products: fetchProductReducer,
-    addedProduct: addProductReducer,
-    updatedProduct: updateProductReducer,
-    quantity: quantityReducer
+    products: FetchProductsReducer,
+    addedProduct: AddProductReducer,
+    updatedProduct: UpdateProductReducer,
+    quantity: QuantityReducer
 })

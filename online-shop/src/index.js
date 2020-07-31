@@ -10,13 +10,17 @@ import './Styles/productDetails.css';
 import './Styles/productPage.css';
 import './Styles/productList.css';
 import 'fontsource-roboto';
+import { Provider } from "react-redux";
 import { BrowserRouter as Router } from 'react-router-dom';
+import { store } from './store';
 
 ReactDOM.render(
-    <Router>
-        <ThemeProvider theme={theme}>
-            <App/>
-        </ThemeProvider>
-    </Router>,
+    <Provider store={store}>
+        <Router>
+            <ThemeProvider theme={theme}>
+                <App/>
+            </ThemeProvider>
+        </Router>
+    </Provider>,
     document.getElementById('root')
 );

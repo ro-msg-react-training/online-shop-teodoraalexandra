@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductDetails from './ProductDetails';
+import ProductDetailsCart from './ProductDetailsCart';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -38,8 +38,8 @@ const Cart = (prop) => {
         setOpen(false);
     };
 
-    const productDetails = ProductsInCart.all().map((product) =>
-        <ProductDetails product = {product}/>
+    const productDetailsCart = ProductsInCart.all().map((product) =>
+        <ProductDetailsCart key={product.id} product={product}/>
     );
 
     const request = {
@@ -85,7 +85,7 @@ const Cart = (prop) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {productDetails}
+                    {productDetailsCart}
                 </TableBody>
             </Table>
 
@@ -98,5 +98,6 @@ const Cart = (prop) => {
         </TableContainer>
     );
 }
+
 
 export default Cart

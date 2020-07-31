@@ -11,31 +11,31 @@ const initialState: QuantityState = {
 }
 
 export const QuantityReducer = (state = initialState, action) => {
-    const copy = state.quantity;
+    const stateQuantityCopy = state.quantity;
 
     switch(action.type) {
         case INCREMENT:
-            if (isNaN(copy[action.id - 1])) {
-                copy[action.id - 1] = 1;
+            if (isNaN(stateQuantityCopy[action.id - 1])) {
+                stateQuantityCopy[action.id - 1] = 1;
             } else {
-                copy[action.id - 1] = copy[action.id - 1] + 1
+                stateQuantityCopy[action.id - 1] = stateQuantityCopy[action.id - 1] + 1
             }
 
             return {
                 ...state,
-                quantity: copy
+                quantity: stateQuantityCopy
             };
 
         case DECREMENT:
-            if (isNaN(copy[action.id - 1])) {
-                copy[action.id - 1] = 1;
+            if (isNaN(stateQuantityCopy[action.id - 1])) {
+                stateQuantityCopy[action.id - 1] = 1;
             } else {
-                copy[action.id - 1] = copy[action.id - 1] - 1
+                stateQuantityCopy[action.id - 1] = stateQuantityCopy[action.id - 1] - 1
             }
 
             return {
                 ...state,
-                quantity: copy
+                quantity: stateQuantityCopy
             };
 
         default:

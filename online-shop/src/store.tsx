@@ -1,17 +1,18 @@
-import { createStore } from "redux";
-import { applyMiddleware } from "redux";
-import thunk from 'redux-thunk';
+import { createStore, applyMiddleware } from "redux";
 import rootReducer from './Reducers';
 import { FetchProductsState } from "./Reducers/FetchProductsReducer";
 import { AddProductState } from "./Reducers/AddProductReducer";
 import { UpdateProductState } from "./Reducers/UpdateProductReducer";
 import { QuantityState } from "./Reducers/QuantityReducer";
+import createSagaMiddleware from 'redux-saga'
+import rootSaga from './sagas'
 
-const middleware = [thunk];
+const sagaMiddleware = createSagaMiddleware()
 export const store = createStore(
     rootReducer,
-    applyMiddleware(...middleware)
-);
+    applyMiddleware(sagaMiddleware)
+)
+sagaMiddleware.run(rootSaga)
 
 export interface AppState {
     products: FetchProductsState,

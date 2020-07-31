@@ -13,7 +13,7 @@ import 'fontsource-roboto';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { fetchProducts } from "../Actions/FetchProducts";
-import { AppState } from "../store";
+import {AppState } from "../store";
 
 type Props = {
     products: [],
@@ -71,4 +71,4 @@ const mapStateToProps = (state: AppState) => ({
    products: state.products.allProducts,
     isLoading: state.products.isLoading
 });
-export default connect(mapStateToProps, { fetchProducts })(ProductList)
+export default connect(mapStateToProps, {fetchProducts})(ProductList)
